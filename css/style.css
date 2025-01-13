@@ -1,0 +1,544 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Poppins:wght@400&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1212125d;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  height: 100%;
+  position: relative;
+}
+
+.desktop .overlap-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100%;
+
+}
+
+.desktop .overlap {
+  position: relative;
+  height: 70%;
+  width: auto;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 6%;
+  gap: 3%;  
+}
+
+#background-video {
+  height: 100%;
+  width: 100%;
+  filter: blur(6px);
+  -webkit-filter: blur(6px);
+  object-fit: cover;
+  /* Ensures the video covers the screen and crops excess */
+  position: fixed;
+  top: 0;
+    left: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  transform: scale(1.05);
+  /* Scales the video up */
+  background-color: black;
+  /* Optional: set a solid color as fallback */
+}
+
+
+.desktop .UNDER-CONSTRUCTION {
+  position: relative;
+  font-family: 'Trebuchet MS', sans-serif;
+  letter-spacing: 2px;
+  font-size: 75px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  /* top: 24%; */
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: normal;
+  /* margin: 0 auto 30px auto; */
+  text-align: center;
+}
+
+
+.desktop .text-wrapper {
+  position: relative;
+  padding-top: 25px;
+  /* top: 3%; */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.desktop .div {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #F5F5F5;
+  position: relative;
+  text-align: center;
+  margin-top: 40px
+}
+
+.desktop .frame {
+  position: relative;
+  margin-top: 3%;
+}
+
+.instagram{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.imgSize{
+  height: 2em;
+  margin-right: 5px;;
+}
+
+.desktop .text-wrapper-2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  color: #F5F5F5;
+  font-size: 18px;
+  line-height: normal;
+  position: relative;
+  margin-left: 5px;
+}
+
+
+/* .desktop .overlap-group {
+    position: relative;
+    width: 42px;
+    height: 200px;
+    top: 3px;
+    background-image: url(./img/vector.svg);
+    background-size: 100% 100%;
+  } */
+
+/* .desktop .subtract {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 1px;
+    left: 1px;
+  }  */
+
+
+/* .desktop .rectangle-wrapper {
+    position: absolute;
+    width: 371px;
+    height: 12px;
+    top: 646px;
+    background-color: #d9d9d959;
+  }
+  
+  .desktop .rectangle {
+    width: 1px;
+    height: 12px;
+    background-color: #8af5d3;
+    box-shadow: 1px 0px 12.8px 2px #00000040;
+  }
+   */
+
+
+.cr {
+  position: relative;
+  /* height: 3%; */
+  /* left: 80px; */
+  /* bottom: 0px; */
+  /* font-family: "Questrial-Regular", Helvetica;
+  font-weight: 400;
+  font-size: 85%; */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #B3B3B3;
+  text-align: left;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  /* margin-right: auto; */
+  margin-left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.foot{
+  height: 35px;
+  background-color: #1818185d;
+}
+
+.progress-bar {
+  width: 80%;
+  max-width: 380px;
+  height: 12px;
+  background-color: #212529;
+  border-radius: 6px;
+  position: relative;
+  margin: 0 auto 0 auto;
+}
+
+.progress {
+  border-radius: 6px;
+  width: 0;
+  /* Initial state */
+  height: 100%;
+  /* background-color: #8AF5D3;  */
+  background-color: #00FFCC;
+
+  transition: width 2s ease-in;
+}
+
+/* Notify Me Button */
+.notify-container {
+  margin: 5% auto 0% auto;
+  /* Center horizontally with margin */
+  text-align: center;
+  position: relative;
+  /* top: 27%; */
+}
+
+.notify-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #E63946;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.notify-button:hover {
+  background-color: #C32F27;
+  transform: scale(1.05);
+}
+
+.notify-button:active {
+  background-color: #A5271C;
+  transform: scale(0.98);
+}
+
+/* Overlay Styles */
+.overlay {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* More translucent background */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overlay Content */
+.overlay-content {
+  background: rgba(255, 255, 255, 0.95); /* Slightly translucent white background */
+  padding: 30px;
+  padding-top: 40px;
+  /* padding-top: 15px; */
+  border-radius: 15px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  position: relative; /* Needed for positioning the close button */
+}
+
+/* Heading and Text */
+.overlay-content h2 {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  color: #E63946;
+  margin-bottom: 10px;
+}
+
+.overlay-content .upFont {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #333333;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+/* Input Field */
+.overlay-content input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  padding: 15px, 15px;
+  height: 30px;
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.tnc span{
+  font-weight: 600;
+}
+
+/* Submit Button */
+.submit-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #E63946;
+  color: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: #C32F27;
+}
+
+.tnc, .policy{
+  position: relative;
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: justify;
+  line-height: 18px;
+  /* color: #6c757d; */
+  color: #4a4a4a;
+}
+
+.link{
+color: #0056b3;
+}
+
+/* Close Button (Cross Icon) */
+.close-icon {
+  position: absolute;
+  top: -50px;  /* Positioning the circle to overlap */
+  /* right: -340px; */
+  left: 100%;  /* Positioning the circle to overlap */
+  font-size: 40px; /* Increase font size for better visibility */
+  font-family: Arial, sans-serif;
+  color: #333333;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border-radius: 50%;  /* Circular shape */
+  width: 40px;  /* Size of the circle */
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  /* Adding a subtle drop shadow */
+  z-index: 1100;
+  /* Ensure the circle is above the content */
+  border: none;
+  /* Explicitly remove the border */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+}
+
+.close-icon::before,
+.close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  /* Length of the cross */
+  height: 4px;
+  /* Thickness of the cross */
+  background-color: #333333;
+  /* Cross color */
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+.close-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+  /* Diagonal line */
+}
+
+.close-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+  /* Other diagonal line */
+}
+
+.close-icon:hover {
+  background-color: #E63946;
+  /* Change background on hover */
+  color: #FFFFFF;
+  /* Change text color on hover */
+}
+
+@media only screen and (min-width: 320px) and (max-width: 992px) {
+  
+  .desktop .overlap {
+      margin-top: 0%;
+   }
+
+   .desktop .UNDER-CONSTRUCTION{
+    margin-top: 10%;
+    font-size: 40px;
+   }
+
+   .desktop .div{
+    font-size: 12px;
+    margin-top: 10%;
+   }
+
+   .desktop .notify-container{
+    margin-top: 10%;
+   }
+
+   .desktop .progress-bar{
+    height: 10px;
+    margin-bottom: 1%;
+   }
+
+   .desktop .frame{
+    margin-top: auto;
+   }
+
+   .close-icon{
+    top: -60px;
+    right: -250px;
+   }
+
+   .overlay-content input{
+    margin-bottom: 22px;
+   }
+
+   .overlay-content{
+    width: 80%;
+   }
+
+   .overlay-content h2{
+    top: 30px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+   }
+
+   .close-icon{
+    top: -50px;
+    /* Positioning the circle to overlap */
+    /* left: 100%; */
+    /* Positioning the circle to overlap */
+    font-size: 40px;
+    /* Increase font size for better visibility */
+   }
+
+   .cr{
+    font-size: 10px;
+   }
+}
+
+
+
+/* @media only screen and (min-width: 320px) and (max-width: 992px) {
+
+  .desktop .UNDER-CONSTRUCTION {
+    font-size: 40px;
+  }
+
+  .desktop .div {
+    top: 35%;
+    font-size: 12px;
+  }
+
+  .desktop .progress-bar {
+    top: 32%;
+  }
+
+  .desktop .notify-button {
+    font-size: 20px;
+  }
+
+  .desktop .notify-container {
+    top: 38%;
+  }
+
+  .desktop .p {
+    font-size: 8px;
+    left: 20px;
+    bottom: 0px;
+  }
+
+  .desktop .text-wrapper-2 {
+    font-size: 15px;
+  }
+
+} */
+
+/*
+  .desktop .notify-container{
+    top:50%;
+  }
+
+ .desktop .notify-button{
+    font-size: 48px;
+    top:50%;
+  }
+  
+  .desktop .progress-bar{
+    top: 700px;
+    max-width: 500px;
+  }
+
+  .desktop .div{
+    font-size: 25px;
+  }
+
+} */

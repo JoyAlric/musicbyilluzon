@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for readability */
+    font-size: 0.9em;
+  }
+
+  div{
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #ffffff; /* Bright white for main heading */
+    font-size: 2em;
+    margin: 20px 0;
+  }
+
+  h2 {
+    color: #bbbbbb; /* Subtle gray for subheadings */
+    font-size: 1.4em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #333333; /* Underline for separation */
+    padding-bottom: 5px;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 15px;
+    color: #d0d0d0; /* Softer gray for body text */
+  }
+
+  a {
+    color: #1e90ff; /* Soft blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #00bfff; /* Brighter blue on hover */
+    text-decoration: underline;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Slightly lighter than background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for elevation */
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #181818; /* Dark footer background */
+    color: #aaaaaa; /* Muted gray for footer text */
+    font-size: 0.8em;
+    border-top: 1px solid #333333; /* Subtle top border */
+  }
+
+  footer a {
+    color: #1e90ff;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #00bfff;
+    text-decoration: underline;
+  }

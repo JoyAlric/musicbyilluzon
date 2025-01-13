@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable=no>
+  <link rel="stylesheet" href="css/globals.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- <link rel="stylesheet" href="css/animations.css" /> -->
+  <!-- <link rel="stylesheet" href="rstyle.css" /> -->
+  <title>Music By Illuzon</title>
+  <link rel="icon" href="images/favicon.ico" type="image/icon type">
+</head>
+
+<body>
+  <video id="background-video" autoplay loop muted poster="https://img1.wsimg.com/isteam/stock/10630">
+    <source src="https://res.cloudinary.com/dzmuvpq5s/video/upload/v1736746255/musicbyilluzon/musicbyilluzonhome.mp4" type="video/mp4">
+  </video>
+  <div class="desktop">
+    <div class="overlap-wrapper">
+
+      <div class="text-wrapper">MUSIC BY ILLUZON</div>
+
+      <div class="overlap">
+        <div class="UNDER-CONSTRUCTION">UNDER<br />CONSTRUCTION</div>
+
+        <div class="div">SITE NEARLY READY</div>
+
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+
+        <div class="notify-container">
+          <button class="notify-button" onclick="showOverlay()">Notify Me</button>
+        </div>
+
+        <div class="frame">
+          <a class="instagram" href="https://www.instagram.com/musicbyilluzon/" target="_blank">
+            <div class="instagramLogo">
+              <!-- <div class="overlap-group"> -->
+              <img class="imgSize" src="https://res.cloudinary.com/dzmuvpq5s/image/upload/v1736746226/musicbyilluzon/instagram.svg" alt="">
+              <!-- </div> -->
+            </div>
+
+            <div class="text-wrapper-2">@musicbyilluzon</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="foot"><p class="cr">Copyright © 2025 Music by Illuzon - All Rights Reserved.</p></div>
+
+      <!-- Overlay -->
+      <div id="overlay" class="overlay">
+        <div class="overlay-content">
+          <!-- Close Button (Cross Icon) -->
+          <button class="close-icon" onclick="hideOverlay()"> <span></span> </button>
+
+          <h2>Stay Updated</h2>
+          <p class="upFont">Enter your email to receive updates:</p>
+          <input type="email" id="email-input" placeholder="Your email address" />
+          <button class="submit-button" onclick="submitEmail()">Get Notified!</button>
+          <p class="tnc">
+            By clicking on "Get Notified!", you agree to <span>MusicByIlluzon's </span><a class="link" id="tc" href="T&Cs.html" target="_blank">Terms</a> and <a class="link" id="poli" href="PrivacyPolicy.html" target="_blank">Privacy Policy</a>
+          </p>
+          <!-- <p class="policy">
+            To learn more about how musicbyilluzon collects, uses, shares and protects your personal data, please see
+            <a class="link" id="poli" href="">
+              musicbyilluzon's Privacy Policy
+            </a> -->
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <script src="js/notifyme.js"></script> -->
+
+  <script src="js/catchMails.js"></script>
+
+  <script src="js/progressbar.js"></script>
+
+</body>
+
+</html>
