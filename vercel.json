@@ -1,12 +1,12 @@
 {
     "rewrites": [
       {
-        "source": "T&C.html",
-        "destination": "T&C"
+        "source": "/T&C.html",
+        "destination": "/T&C"
       },
       {
-        "source": "PrivacyPolicy.html",
-        "destination": "PrivacyPolicy"
+        "source": "/PrivacyPolicy.html",
+        "destination": "/PrivacyPolicy"
       }
     ]
   }
