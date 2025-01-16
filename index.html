@@ -54,7 +54,14 @@
       <div id="overlay" class="overlay">
         <div class="overlay-content">
           <!-- Close Button (Cross Icon) -->
-          <button class="close-icon" onclick="hideOverlay()"> <span></span> </button>
+          <!-- <button class="close-icon" onclick="hideOverlay()"> <span></span> </button> -->
+          <button class="close-icon" onclick="hideOverlay()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+         </button>
+         
 
           <h2>Stay Updated</h2>
           <p class="upFont">Enter your email to receive updates:</p>
@@ -73,11 +80,16 @@
       </div>
 
     </div>
+
+    <div id="notification-container"></div>
+
   </div>
 
   <!-- <script src="js/notifyme.js"></script> -->
 
   <script src="js/catchMails.js"></script>
+
+  <script src="js/readMails.js"></script>
 
   <script src="js/progressbar.js"></script>
 

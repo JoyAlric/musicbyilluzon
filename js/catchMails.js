@@ -1,3 +1,7 @@
+
+const macro= process.env.SCRAPE;
+console.log(`API URL from Vercel: ${macro}`);
+
 // Show the overlay
 function showOverlay() {
     document.getElementById("overlay").style.display = "flex";
@@ -9,8 +13,7 @@ function showOverlay() {
   }
   
 
-// Function to handle the email submission
-function submitEmail() {
+  function submitEmail() {
     const email = document.getElementById("email-input").value;
     
     // Validate email input
@@ -19,8 +22,14 @@ function submitEmail() {
         return;
     }
 
+     // Build the URL with the macro ID
+    const url = `https://script.google.com/macros/s/${macro}/exec`;
+
+    // Print the URL to check if it's working
+    console.log("Sending request to:", url);
+
     // Send the email to the Google Apps Script via POST request
-    fetch("https://script.google.com/macros/s/AKfycbz1WJi1jw-GsFN8A-13ALiPTNNPyQmg_0fwvgSyAR6TBt_EhUGAkUJ-FPNnWgsZz3QE/exec", {
+    fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -50,3 +59,7 @@ function validateEmail(email) {
 function hideOverlay() {
     document.getElementById("overlay").style.display = 'none';
 }
+
+
+
+

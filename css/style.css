@@ -285,7 +285,7 @@ body {
   padding: 30px;
   padding-top: 40px;
   /* padding-top: 15px; */
-  border-radius: 15px;
+  border-radius: 20px;
   text-align: center;
   max-width: 500px;
   width: 100%;
@@ -365,28 +365,26 @@ color: #0056b3;
 
 /* Close Button (Cross Icon) */
 .close-icon {
-  position: absolute;
-  top: -50px;  /* Positioning the circle to overlap */
-  /* right: -340px; */
-  left: 100%;  /* Positioning the circle to overlap */
-  font-size: 40px; /* Increase font size for better visibility */
+  position: relative;
+  top: -31px; 
+  left: 100%;
+  transform: translateX(-40%);
+  font-size: 18px;
   font-family: Arial, sans-serif;
-  color: #333333;
+  font-weight: 300;
+  color: #ffffff;
   cursor: pointer;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 50%;  /* Circular shape */
-  width: 40px;  /* Size of the circle */
-  height: 40px;
+  width: 36px;  /* Reduced size of the circle */
+  height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  /* Adding a subtle drop shadow */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Softer shadow */
   z-index: 1100;
-  /* Ensure the circle is above the content */
   border: none;
-  /* Explicitly remove the border */
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
 }
 
@@ -396,32 +394,31 @@ color: #0056b3;
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 20px;
-  /* Length of the cross */
-  height: 4px;
-  /* Thickness of the cross */
-  background-color: #333333;
-  /* Cross color */
-  border-radius: 2px;
+  width: 16px; /* Shorter length of the cross */
+  height: 2px; /* Thinner cross */
+  background-color: #666666; /* Subtle gray color for the cross */
+  border-radius: 1px; /* Slight rounding for a refined look */
   transform-origin: center;
 }
 
 .close-icon::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-  /* Diagonal line */
+  transform: translate(-50%, -50%) rotate(45deg); /* Diagonal line */
 }
 
 .close-icon::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-  /* Other diagonal line */
+  transform: translate(-50%, -50%) rotate(-45deg); /* Other diagonal line */
 }
 
 .close-icon:hover {
-  background-color: #E63946;
-  /* Change background on hover */
-  color: #FFFFFF;
-  /* Change text color on hover */
+  background-color: #f9f9f9; /* Light gray background on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
 }
+
+.close-icon:hover::before,
+.close-icon:hover::after {
+  background-color: #999999; /* Slightly darker gray cross on hover */
+}
+
 
 @media only screen and (min-width: 320px) and (max-width: 992px) {
   
@@ -453,8 +450,9 @@ color: #0056b3;
    }
 
    .close-icon{
-    top: -60px;
-    right: -250px;
+    position: relative;
+    margin-top: 19px;
+    right: -280px;
    }
 
    .overlay-content input{
@@ -542,3 +540,93 @@ color: #0056b3;
   }
 
 } */
+
+/* Notification popup box styling */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 10px; /* Space between stacked notifications */
+  display: none; /* Initially hidden */
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  z-index: 9999; /* Ensure notifications are on top */
+  font-weight: 500;
+  transition: opacity 0.5s ease; /* Smooth fade-out transition */
+  opacity: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  animation: popIn 0.3s ease-out; /* Animation for popping in */
+}
+
+/* Keyframe for the "pop-in" animation */
+@keyframes popIn {
+  0% {
+    transform: scale(0.8); /* Start smaller */
+    opacity: 0; /* Initially hidden */
+  }
+  50% {
+    transform: scale(1.05); /* Slightly bigger in the middle */
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    transform: scale(1); /* End at normal size */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+/* Success notification styling (white translucent background) */
+.success {
+  background-color: rgba(255, 255, 255, 0.8); /* White, translucent background */
+  color: #1b1b1b; /* Green text for success */
+}
+
+/* Error notification styling (white translucent background) */
+.error {
+  background-color: rgba(255, 255, 255, 0.8); /* White, translucent background */
+  color: #1b1b1b; /* Red text for error */
+}
+
+/* Common notification icons */
+.notification-icon {
+  font-size: 12px; /* Smaller icon size */
+  margin-right: 15px; /* Space between icon and message */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Close button styling */
+.notification-close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  opacity: 0.8;
+}
+
+/* Hover effect for the close button */
+.notification-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Notification container */
+#notification-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 10px;
+} 
