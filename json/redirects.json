@@ -1,0 +1,15 @@
+{
+    "redirects": [
+      {
+        "source": "/T&C.html",
+        "destination": "/T&C",
+        "permanent": true
+      },
+      {
+        "source": "/PrivacyPolicy.html",
+        "destination": "/PrivacyPolicy",
+        "permanent": true
+      }
+    ]
+  }
+  
