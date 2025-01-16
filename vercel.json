@@ -1,14 +1,12 @@
 {
-    "redirects": [
+    "rewrites": [
       {
-        "source": "/T&C.html",
-        "destination": "/T&C",
-        "permanent": true
+        "source": "T&C.html",
+        "destination": "T&C"
       },
       {
-        "source": "/PrivacyPolicy.html",
-        "destination": "/PrivacyPolicy",
-        "permanent": true
+        "source": "PrivacyPolicy.html",
+        "destination": "PrivacyPolicy"
       }
     ]
   }
