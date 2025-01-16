@@ -1,8 +1,8 @@
 {
     "rewrites": [
       {
-        "source": "/T&C.html",
-        "destination": "/T&C"
+        "source": "/T&C",
+        "destination": "/T&C.html"
       },
       {
         "source": "/PrivacyPolicy.html",
