@@ -132,13 +132,10 @@ body {
 
 .imgSize{
   height: 2em;
-  margin-right: 5px;;
+  margin-right: 3px;;
 }
 
 .desktop .text-wrapper-2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 8px;
-  font-weight: 400;
   color: #F5F5F5;
   font-size: 18px;
   line-height: normal;
