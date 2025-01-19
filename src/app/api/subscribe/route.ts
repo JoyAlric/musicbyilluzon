@@ -9,22 +9,36 @@ export async function POST(req: Request) {
     const { email } = await req.json();
 
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      return NextResponse.json({ message: 'Invalid email address' }, { status: 400 });
+      return NextResponse.json({ message: 'Invalid email address.' }, { status: 400 });
     }
 
-    // Save the subscriber to the database
+    // Check if the user is already subscribed
     const existingSubscriber = await prisma.subscriber.findUnique({ where: { email } });
     if (existingSubscriber) {
       return NextResponse.json({ message: 'You are already subscribed!' }, { status: 409 });
     }
 
-    await prisma.subscriber.create({ data: { email } });
+    // Generate token and expiry date
+    const tokenExpiry = new Date();
+    tokenExpiry.setDate(tokenExpiry.getDate() + 7);
+
+    // Save the subscriber
+    const subscriber = await prisma.subscriber.create({
+      data: {
+        email,
+        tokenExpiry,
+      },
+    });
+
+    // Generate unsubscribe URL
+    const unsubscribeUrl = `${process.env.PROD_URL}/api/unsubscribe?token=${subscriber.token}`;
+
 
     // Send a confirmation email via AWS SES
     const subject = 'Thank You for Subscribing!';
     const html = `
     <div>
-        <p>Dear {subscriberName},</p>
+        <p>Dear ${email},</p>
 
         <p>
           Thank you for subscribing to updates from Illuzon! We are excited to have you on board.
@@ -115,7 +129,7 @@ export async function POST(req: Request) {
             <tr className="w-full">
               <td align="center">
                 <Text className="text-[12px] leading-[16px] text-gray-400">
-                  To unsubscribe from updates, <Link href="#" className="text-gray-400">click here</Link>.
+                  To unsubscribe from updates, <a href="${unsubscribeUrl}">Click Here</Link>.
                 </Text>
               </td>
             </tr>
