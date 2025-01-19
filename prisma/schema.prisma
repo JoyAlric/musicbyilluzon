@@ -14,7 +14,9 @@ datasource db {
 }
 
 model Subscriber {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  token       String   @unique @default(uuid())
+  tokenExpiry DateTime @default(now()) // Set expiry time
+  createdAt   DateTime @default(now())
 }
