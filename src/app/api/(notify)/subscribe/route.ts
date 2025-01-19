@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
     // Generate token and expiry date
     const tokenExpiry = new Date();
-    tokenExpiry.setDate(tokenExpiry.getDate() + 7);
+    tokenExpiry.setDate(tokenExpiry.getDate() + 1);
 
     // Save the subscriber
     const subscriber = await prisma.subscriber.create({
@@ -140,7 +140,7 @@ export async function POST(req: Request) {
     `;
     await sendEmail(email, subject, html);
 
-    return NextResponse.json({ message: 'Subscription successful!' }, { status: 200 });
+    return NextResponse.json({ message: 'Subscription Successful!' }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });

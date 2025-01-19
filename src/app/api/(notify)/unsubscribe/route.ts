@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
+export const dynamic = 'force-dynamic'; 
+
 const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
@@ -29,7 +31,7 @@ export async function GET(req: Request) {
 
     return NextResponse.redirect(`${process.env.PROD_URL}/unsubscribe-success`);
   } catch (error) {
-    console.error('Error unsubscribing:', error);
+    console.error('Error Unsubscribing:', error);
     return NextResponse.json({ message: 'Internal Server Error.' }, { status: 500 });
   }
 }

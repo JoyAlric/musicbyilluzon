@@ -10,8 +10,12 @@ interface NotifyOverlayProps {
 export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);  // State to track form submission
 
   const handleSubscribe = async () => {
+    if (isSubmitting) return;  // Prevent multiple clicks if already submitting
+
+    setIsSubmitting(true);  // Disable the button
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
@@ -31,6 +35,8 @@ export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps
     } catch (error) {
       console.error('Error subscribing:', error);
       setMessage('An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);  // Enable the button again after the request completes
     }
   };
 
@@ -58,8 +64,12 @@ export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="submit-button" onClick={handleSubscribe}>
-              Get Notified!
+            <button 
+              className="submit-button" 
+              onClick={handleSubscribe} 
+              disabled={isSubmitting} // Disable button while submitting
+            >
+              {isSubmitting ? 'Subscribing...' : 'Get Notified!'}
             </button>
             <p className="tnc">
               By clicking on &quot;Get Notified!&quot;, you agree to{' '}
