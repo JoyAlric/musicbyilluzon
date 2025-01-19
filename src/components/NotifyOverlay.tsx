@@ -10,12 +10,12 @@ interface NotifyOverlayProps {
 export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);  // State to track form submission
+  const [isSubmitting, setIsSubmitting] = useState(false); // Prevent multiple submissions
 
   const handleSubscribe = async () => {
-    if (isSubmitting) return;  // Prevent multiple clicks if already submitting
+    if (isSubmitting) return;
 
-    setIsSubmitting(true);  // Disable the button
+    setIsSubmitting(true);
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
@@ -27,7 +27,7 @@ export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps
 
       const data = await response.json();
       if (response.ok) {
-        setMessage('Thank you for subscribing!');
+        setMessage('Thank you for subscribing! Check your email for confirmation.');
         setEmail('');
       } else {
         setMessage(data.message || 'Something went wrong.');
@@ -36,7 +36,7 @@ export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps
       console.error('Error subscribing:', error);
       setMessage('An error occurred. Please try again.');
     } finally {
-      setIsSubmitting(false);  // Enable the button again after the request completes
+      setIsSubmitting(false);
     }
   };
 
@@ -64,9 +64,9 @@ export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button 
-              className="submit-button" 
-              onClick={handleSubscribe} 
+            <button
+              className="submit-button"
+              onClick={handleSubscribe}
               disabled={isSubmitting} // Disable button while submitting
             >
               {isSubmitting ? 'Subscribing...' : 'Get Notified!'}

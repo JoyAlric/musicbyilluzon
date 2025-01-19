@@ -33,116 +33,72 @@ export async function POST(req: Request) {
     // Generate unsubscribe URL
     const unsubscribeUrl = `${process.env.PROD_URL}/api/unsubscribe?token=${subscriber.token}`;
 
-
-    // Send a confirmation email via AWS SES
+    // Send confirmation email
     const subject = 'Thank You for Subscribing!';
     const html = `
     <div>
-        <p>Dear ${email},</p>
+  <p>Dear ${email},</p>
 
-        <p>
-          Thank you for subscribing to updates from Illuzon! We are excited to have you on board.
-        </p>
+  <p>Thank you for subscribing to Illuzon! We’re excited to have you on board.</p>
 
-        <p>
-          As a music producer, I specialize in music production, mixing, and mastering, and I’m thrilled to share my latest work with you. By subscribing, you’ll receive notifications about:
-        </p>
-        <ul>
-          <li>New releases on Spotify</li>
-          <li>YouTube uploads</li>
-          <li>Sample packs and presets</li>
-          <li>Exclusive sales and offers</li>
-          <li>Major updates related to my music career</li>
-        </ul>
+  <p>
+    As a music producer, I specialize in music production, mixing, and mastering. By subscribing, you’ll stay updated on:
+  </p>
+  <ul>
+    <li>New Spotify releases</li>
+    <li>YouTube uploads</li>
+    <li>Sample packs & presets</li>
+    <li>Exclusive offers</li>
+    <li>Major career updates</li>
+  </ul>
 
-        <p>
-          Please note that our website, <a href="http://musicbyilluzon.in">musicbyilluzon.in</a>, is currently under construction, but we’ll notify you as soon as it goes live.
-        </p>
+  <p>
+    Visit <a href="http://musicbyilluzon.in">musicbyilluzon.in</a> for more details (coming soon!).
+  </p>
 
-        <p>
-          Thank you for your support, and I look forward to keeping you updated on all my latest releases and news!
-        </p>
+  <p>Thank you for your support!</p>
+  <p>Best regards,<br />Illuzon</p>
 
-        <p>Best regards,</p>
-        <p>Illuzon</p>
+  <hr style="margin: 16px 0; border: 0; border-top: 2px solid #ccc;" />
 
-        
-        <Hr className="my-[16px] border-t-2 border-gray-300" />
-        
-
-        <Section className="text-center">
-          <table className="w-full">
-            <tr className="w-full">
-              <td align="center">
-                <Img
-                  alt="Illuzon Logo"
-                  height="42"
-                  src="https://res.cloudinary.com/dzmuvpq5s/image/upload/v1736792428/musicbyilluzon/musicbyilluzon.png" // replace with your logo URL
-                />
-              </td>
-            </tr>
-            <tr className="w-full">
-              <td align="center">
-                <Text className="my-[8px] text-[16px] font-semibold leading-[24px] text-gray-900">
-                  Illuzon
-                </Text>
-                <Text className="mb-0 mt-[4px] text-[16px] leading-[24px] text-gray-500">
-                  Music Producer
-                </Text>
-              </td>
-            </tr>
-            <tr>
-              <td align="center">
-                <Row className="table-cell h-[44px] w-[56px] align-bottom">
-                  <Column className="pr-[8px]">
-                    <Link href="https://www.instagram.com/musicbyilluzon">
-                      <Img
-                        alt="Instagram"
-                        height="36"
-                        src="https://react.email/static/instagram-logo.png" // Replace with gray version of Instagram logo
-                        width="36"
-                      />
-                    </Link>
-                  </Column>
-                </Row>
-              </td>
-            </tr>
-            <tr>
-              <td align="center">
-                <Text className="my-[8px] text-[16px] font-semibold leading-[24px] text-gray-500">
-                  <Link href="https://musicbyilluzon.in" className="text-gray-500">
-                    musicbyilluzon.in
-                  </Link>
-                </Text>
-                <Text className="mb-0 mt-[4px] text-[16px] font-semibold leading-[24px] text-gray-500">
-                  <Link href="mailto:support@musicbyilluzon.in" className="text-gray-500">
-                    support@musicbyilluzon.in
-                  </Link>
-                </Text>
-              </td>
-            </tr>
-          </table>
-        </Section>
-
-        <Section className="text-center mt-[16px]">
-          <table className="w-full">
-            <tr className="w-full">
-              <td align="center">
-                <Text className="text-[12px] leading-[16px] text-gray-400">
-                  To unsubscribe from updates, <a href="${unsubscribeUrl}">Click Here</Link>.
-                </Text>
-              </td>
-            </tr>
-          </table>
-        </Section>
-
-      </div>
+  <div style="text-align: center;">
+    <img
+      alt="Illuzon Logo"
+      height="42"
+      src="https://res.cloudinary.com/dzmuvpq5s/image/upload/v1736792428/musicbyilluzon/musicbyilluzon.png"
+      style="margin-bottom: 16px;"
+    />
+    <p style="margin: 0; font-weight: bold; color: #333;">Illuzon</p>
+    <p style="margin: 4px 0; color: #777;">Music Producer</p>
+    <div style="margin: 16px 0;">
+      <a href="https://www.instagram.com/musicbyilluzon" style="margin-right: 8px;">
+        <img
+          alt="Instagram"
+          height="36"
+          src="https://react.email/static/instagram-logo.png"
+          style="vertical-align: middle;"
+        />
+      </a>
+    </div>
+    <p style="margin: 8px 0; color: #555;">
+      <a href="https://musicbyilluzon.in" style="color: #555;">musicbyilluzon.in</a> |
+      <a href="mailto:support@musicbyilluzon.in" style="color: #555;">support@musicbyilluzon.in</a>
+    </p>
+    <p style="margin-top: 16px; font-size: 12px; color: #aaa;">
+      To unsubscribe, <a href="${unsubscribeUrl}" style="color: #aaa;">click here</a>.
+    </p>
+  </div>
+</div>
     `;
-    await sendEmail(email, subject, html);
+
+    // Background email sending
+    sendEmail(email, subject, html).catch((error) => {
+      console.error('Error sending email:', error);
+    });
 
     return NextResponse.json({ message: 'Subscription Successful!' }, { status: 200 });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error subscribing:', error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
