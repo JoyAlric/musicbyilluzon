@@ -91,10 +91,7 @@ export async function POST(req: Request) {
 </div>
     `;
 
-    // Background email sending
-    sendEmail(email, subject, html).catch((error) => {
-      console.error('Error sending email:', error);
-    });
+    await sendEmail(email, subject, html);
 
     return NextResponse.json({ message: 'Subscription Successful!' }, { status: 200 });
   } catch (error) {
