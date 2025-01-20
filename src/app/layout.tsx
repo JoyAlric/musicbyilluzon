@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react"
+
 export const metadata = {
   title: '🎵 By Illuzon',
   description: 'Music By Illuzon - Under Construction',
@@ -9,7 +11,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics/>
+      </body>
     </html>
   );
 }
