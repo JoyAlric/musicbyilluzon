@@ -1,0 +1,6 @@
+# robots.txt for https://musicbyilluzon.in/
+
+User-agent: *
+Disallow:
+
+Sitemap: https://musicbyilluzon.in/sitemap.xml
