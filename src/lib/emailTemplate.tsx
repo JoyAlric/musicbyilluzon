@@ -35,7 +35,7 @@ export function getSubscriptionEmailTemplate(email: string, unsubscribeUrl: stri
           <p style="margin: 0; font-weight: bold; color: #333;">Illuzon</p>
           <p style="margin: 4px 0; color: #777;">Music Producer</p>
           <div style="margin: 16px 0;">
-            <a href="https://www.instagram.com/musicbyilluzon" style="margin-right: 8px;">
+            <a href="https://www.instagram.com/musicbyilluzon">
               <img
                 alt="Instagram"
                 height="36"
@@ -89,7 +89,7 @@ export function getSubscriptionEmailTemplate(email: string, unsubscribeUrl: stri
     <p style="margin: 0; font-weight: bold; color: #333;">Illuzon</p>
     <p style="margin: 4px 0; color: #777;">Music Producer</p>
     <div style="margin: 16px 0;">
-      <a href="https://www.instagram.com/musicbyilluzon" style="margin-right: 8px;">
+      <a href="https://www.instagram.com/musicbyilluzon">
         <img
           alt="Instagram"
           height="36"
