@@ -31,10 +31,4 @@ export async function GET() {
   }
 }
 
-// Optional: Export other HTTP methods with 405 status
-export async function POST() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
-    { status: 405 }
-  );
-}
+
