@@ -1,28 +1,40 @@
 import { NextResponse } from "next/server";
 import Spotify from "spotify-web-api-node";
 
-type NowPlayingResponseSuccess = SpotifyApi.CurrentlyPlayingResponse;
-type NowPlayingResponseError = { error: unknown };
-type NowPlayingResponse = NowPlayingResponseSuccess | NowPlayingResponseError;
-
 const api = new Spotify({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   refreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
 });
+
 let expirationTime = 0;
 
-export async function GET(): Promise<NextResponse<NowPlayingResponse>> {
+export async function GET() {
   try {
+    // Refresh token if expired
     if (Date.now() > expirationTime) {
       const response = await api.refreshAccessToken();
       api.setAccessToken(response.body.access_token);
       expirationTime = Date.now() + response.body.expires_in * 1000;
     }
 
+    // Get current playing track
     const playing = await api.getMyCurrentPlayingTrack();
-    return NextResponse.json(playing.body, { status: 200 });
-  } catch (err) {
-    return NextResponse.json({ error: (err as any)?.message }, { status: 500 });
+    
+    return Response.json(playing.body);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json(
+      { error: message },
+      { status: 500 }
+    );
   }
+}
+
+// Optional: Export other HTTP methods with 405 status
+export async function POST() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
 }
