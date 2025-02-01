@@ -43,10 +43,15 @@ async function getActiveDevice(accessToken: string) {
     const activeDevice = data.devices.find((device: any) => device.is_active);
     
     if (activeDevice) {
-      const deviceType = activeDevice.type === 'Computer' ? 'Computer' : 
-                         activeDevice.type === 'Phone' ? 'Phone' : 
-                         activeDevice.type === 'Tablet' ? 'Tablet' : 'Speaker';
-      return { deviceName: activeDevice.name, deviceType };  // Return device name and type separately
+      const deviceType =
+        activeDevice.type === "Computer"
+          ? "Computer"
+          : activeDevice.type === "Phone"
+          ? "Phone"
+          : activeDevice.type === "Tablet"
+          ? "Tablet"
+          : "Speaker";
+      return { deviceName: activeDevice.name, deviceType }; // Return device name and type separately
     } else {
       return { deviceName: "No active device", deviceType: "Unknown" };
     }
@@ -67,37 +72,74 @@ export async function GET(req: NextRequest) {
       cache: "no-store",
     });
 
-    if (response.status === 204 || response.status > 400) {
-      return NextResponse.json({ isPlaying: false }, { status: response.status });
+    // If no song is playing (204 No Content) or response status > 400
+    if (response.status === 204 || response.status >= 400) {
+      // Returning default null values when no song is playing
+      return NextResponse.json(
+        {
+          isPlaying: false,
+          isPaused: false,
+          progressMs: null,
+          durationMs: null,
+          title: null,
+          artist: null,
+          album: null,
+          albumImageUrl: null,
+          songUrl: null,
+          activeDevice: "No active device",
+          deviceType: "Unknown",
+        },
+        { status: response.status }
+      );
     }
 
+    // If song data is returned
     const song = await response.json();
 
     // Fetch the active device and its type
     const { deviceName, deviceType } = await getActiveDevice(accessToken);
 
-    return NextResponse.json({
-      isPlaying: song.is_playing,
-      isPaused: !song.is_playing,
-      progressMs: song.progress_ms,
-      durationMs: song.item?.duration_ms,
-      title: song.item?.name,
-      artist: song.item?.artists?.map((artist: any) => artist.name).join(", "),
-      album: song.item?.album?.name,
-      albumImageUrl: song.item?.album?.images[0]?.url,
-      songUrl: song.item?.external_urls?.spotify,
-      activeDevice: deviceName, // Device name
-      deviceType, // Device type (Phone, Computer, etc.)
-    }, {
-      status: 200,
-      headers: {
-        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0",
-        "Content-Type": "application/json"
+    return NextResponse.json(
+      {
+        isPlaying: song.is_playing,
+        isPaused: !song.is_playing,
+        progressMs: song.progress_ms ?? null,
+        durationMs: song.item?.duration_ms ?? null,
+        title: song.item?.name ?? null,
+        artist: song.item?.artists?.map((artist: any) => artist.name).join(", ") ?? null,
+        album: song.item?.album?.name ?? null,
+        albumImageUrl: song.item?.album?.images[0]?.url ?? null,
+        songUrl: song.item?.external_urls?.spotify ?? null,
+        activeDevice: deviceName, // Device name
+        deviceType, // Device type (Phone, Computer, etc.)
+      },
+      {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch now playing" }, { status: 500 });
+    // In case of any unexpected err,ro return default null values
+    return NextResponse.json(
+      {
+        isPlaying: false,
+        isPaused: false,
+        progressMs: null,
+        durationMs: null,
+        title: null,
+        artist: null,
+        album: null,
+        albumImageUrl: null,
+        songUrl: null,
+        activeDevice: "No active device",
+        deviceType: "Unknown",
+      },
+      { status: 500 }
+    );
   }
 }
