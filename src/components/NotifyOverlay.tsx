@@ -53,7 +53,6 @@ export default function NotifyOverlay({ isVisible, onClose }: NotifyOverlayProps
             style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px' }}
           >
             <button className="close-icon" onClick={onClose}>
-              ''
             </button>
             <h2>Stay Updated</h2>
             <p className="upFont">Enter your email to receive updates:</p>
