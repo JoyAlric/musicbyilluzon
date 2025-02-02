@@ -8,6 +8,7 @@ import BackgroundVideo from '@/components/BackgroundVideo';
 import NotifyOverlay from '@/components/NotifyOverlay';
 import ProgressBar from '@/components/ProgressBar';
 import InstagramLink from '@/components/InstagramLink';
+import NowPlaying from '@/components/NowPlaying';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -34,6 +35,7 @@ export default function Home() {
           </div>
           <InstagramLink />
         </div>
+        <NowPlaying />
         <Footer />
       </div>
       <NotifyOverlay isVisible={isOverlayVisible} onClose={hideOverlay} />
