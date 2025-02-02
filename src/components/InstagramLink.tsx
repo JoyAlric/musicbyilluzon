@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { Poppins } from 'next/font/google';
 const poppins = Poppins({ weight: '400', subsets: ['latin'] });
+import Link from "next/link";
 
 export default function InstagramLink() {
     return (
-      <div className="frame">
-        <a
-          className="instagram"
+      <div className="instagram">
+        <Link
           href="https://www.instagram.com/musicbyilluzon/"
           target="_blank"
           rel="noopener noreferrer"
@@ -16,8 +16,8 @@ export default function InstagramLink() {
             src="https://res.cloudinary.com/dzmuvpq5s/image/upload/v1736746226/musicbyilluzon/instagram.svg"
             alt="Instagram Logo"
           />
-          <div className={`${poppins.className} text-wrapper-2`}>@musicbyilluzon</div>
-        </a>
+        
+        </Link>
       </div>
     );
   }

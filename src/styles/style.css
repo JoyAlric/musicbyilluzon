@@ -124,6 +124,7 @@ body {
 }
 
 .instagram{
+  margin-top: 30px;
   position: relative;
   display: flex;
   flex-direction: row;
