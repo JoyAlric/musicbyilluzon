@@ -125,15 +125,24 @@ body {
 
 .instagram{
   margin-top: 30px;
+  margin-right: 4px;
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 10px;
+  
 }
 
 .imgSize{
-  height: 2em;
-  margin-right: 3px;;
+  height: 1.6em;
+  /* margin-right: 3px; */
+}
+
+.mailSize{
+  height: 1.5em;
+  /* margin-left: 10px; */
+  transform: translateY(3%);
 }
 
 .desktop .text-wrapper-2 {
@@ -283,25 +292,39 @@ body {
   padding: 30px;
   padding-top: 40px;
   /* padding-top: 15px; */
-  border-radius: 20px;
+  border-radius: 12px;
   text-align: center;
   max-width: 500px;
   width: 100%;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
   position: relative; /* Needed for positioning the close button */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Heading and Text */
 .overlay-content h2 {
   position: absolute;
+  width: 100%;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  top: 40px;
+  font-weight: 700;
+  top: 35px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 30px;
-  color: #E63946;
-  margin-bottom: 10px;
+  letter-spacing: 1px;
+  font-size: 34px;
+  color: #222;
+  /* margin-bottom: 30px; */
 }
 
 .overlay-content .upFont {
@@ -312,16 +335,23 @@ body {
   margin-bottom: 10px;
 }
 
+
 /* Input Field */
 .overlay-content input {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  padding: 15px, 15px;
+  padding: 14px;
   height: 30px;
-  width: 100%;
+  width: 85%;
   border: 1px solid #CCCCCC;
-  border-radius: 5px;
+  border-radius: 6px;
   margin-bottom: 20px;
+  transition: 0.3s ease;
+}
+
+.overlay-content input:focus {
+  border-color: #E63946;
+  box-shadow: 0px 0px 8px rgba(230, 57, 70, 0.3);
 }
 
 .tnc span{
@@ -332,19 +362,21 @@ body {
 .submit-button {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  background-color: #E63946;
+  /* background-color: #E63946; */
+  background: linear-gradient(90deg, #E63946, #D62839);
   color: #FFFFFF;
   transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .submit-button:hover {
-  background-color: #C32F27;
+  /* background-color: #C32F27; */
+  background: linear-gradient(90deg, #D62839, #B71C1C);
 }
 
 .tnc, .policy{
@@ -361,13 +393,27 @@ body {
 color: #0056b3;
 }
 
+.overlay-content.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 /* Close Button (Cross Icon) */
 .close-icon {
   position: relative;
   top: -31px; 
   left: 100%;
   transform: translateX(-40%);
-  font-size: 18px;
+  font-size: 10px;
   font-family: Arial, sans-serif;
   font-weight: 300;
   color: #ffffff;
@@ -425,7 +471,7 @@ color: #0056b3;
    }
 
    .desktop .UNDER-CONSTRUCTION{
-    margin-top: 10%;
+    margin-top: -5%;
     font-size: 40px;
    }
 
@@ -477,67 +523,47 @@ color: #0056b3;
    }
 
    .cr{
+    display: none;
+   }
+
+   .overlay-content h2{
+    font-size: 24px;
+   }
+
+   .overlay-content .upFont{
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 14px;
+   }
+
+   .overlay-content input{
+    width: 92%;
+    font-size: 14px;
+   }
+
+   .overlay-content .submit-button{
+    font-size: 12px;
+    padding: 10px 14px;
+   }
+
+   .overlay-content .tnc{
     font-size: 10px;
+    line-height: 14px;
+   }
+
+   .imgSize{
+    height: 1.48em;
+   }
+   
+   .mailSize{
+    height: 1.4em;
+   }
+
+   .instagram{
+    gap: 2px;
    }
 }
 
-
-
-/* @media only screen and (min-width: 320px) and (max-width: 992px) {
-
-  .desktop .UNDER-CONSTRUCTION {
-    font-size: 40px;
-  }
-
-  .desktop .div {
-    top: 35%;
-    font-size: 12px;
-  }
-
-  .desktop .progress-bar {
-    top: 32%;
-  }
-
-  .desktop .notify-button {
-    font-size: 20px;
-  }
-
-  .desktop .notify-container {
-    top: 38%;
-  }
-
-  .desktop .p {
-    font-size: 8px;
-    left: 20px;
-    bottom: 0px;
-  }
-
-  .desktop .text-wrapper-2 {
-    font-size: 15px;
-  }
-
-} */
-
-/*
-  .desktop .notify-container{
-    top:50%;
-  }
-
- .desktop .notify-button{
-    font-size: 48px;
-    top:50%;
-  }
-  
-  .desktop .progress-bar{
-    top: 700px;
-    max-width: 500px;
-  }
-
-  .desktop .div{
-    font-size: 25px;
-  }
-
-} */
 
 /* Notification popup box styling */
 .notification {
