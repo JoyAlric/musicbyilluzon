@@ -11,13 +11,15 @@ const urbanist = Urbanist({ subsets: ["latin"], weight: ["400", "600", "700"] })
 interface NowPlayingData {
   isPlaying: boolean;
   isPaused: boolean;
-  progressMs: number;
-  durationMs: number;
-  title: string;
-  artist: string;
-  album: string;
-  albumImageUrl: string;
-  songUrl: string;
+  progressMs: number | null;
+  durationMs: number | null;
+  title: string | null;
+  artist: string | null;
+  album: string | null;
+  albumImageUrl: string | null;
+  songUrl: string | null;
+  activeDevice: string;
+  deviceType: string;
 }
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -27,25 +29,26 @@ export default function NowPlaying() {
   const [elapsedMs, setElapsedMs] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Always initialize progress from data (fixes progress reset issue)
+  // Hide the component if no song has been played for a while
+  const shouldHide =
+    !data || !data.isPlaying || data.progressMs === null || !data.title || !data.artist || !data.albumImageUrl;
+
   useEffect(() => {
-    if (data) {
+    if (data && data.progressMs !== null) {
       setElapsedMs(data.progressMs);
     }
   }, [data]);
 
-  // Increment progress every second when playing
   useEffect(() => {
     if (!data || !data.isPlaying || data.isPaused) return;
 
     const interval = setInterval(() => {
-      setElapsedMs((prev) => Math.min(prev + 1000, data.durationMs));
+      setElapsedMs((prev) => Math.min(prev + 1000, data.durationMs || 0));
     }, 1000);
 
     return () => clearInterval(interval);
   }, [data]);
 
-  // Handle responsiveness
   useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 640);
     checkIfMobile();
@@ -53,8 +56,7 @@ export default function NowPlaying() {
     return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
-  if (error) return null;
-  if (!data) return null;
+  if (error || shouldHide) return null; // Hides the component when no song has been played for a long time
 
   const formatTime = (ms: number) => {
     const minutes = Math.floor(ms / 60000);
@@ -76,8 +78,8 @@ export default function NowPlaying() {
       <div className="relative">
         <motion.img
           key={data.albumImageUrl}
-          src={data.albumImageUrl}
-          alt={data.album}
+          src={data.albumImageUrl!}
+          alt={data.album!}
           className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-110"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -97,11 +99,11 @@ export default function NowPlaying() {
         </div>
 
         <motion.a
-          href={data.songUrl}
+          href={data.songUrl!}
           target="_blank"
           rel="noopener noreferrer"
           className="text-lg font-semibold hover:underline block truncate"
-          title={data.title}
+          title={data.title!}
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -110,7 +112,7 @@ export default function NowPlaying() {
         </motion.a>
         <motion.p
           className="text-sm text-gray-400 truncate"
-          title={data.artist}
+          title={data.artist!}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -121,16 +123,16 @@ export default function NowPlaying() {
         <div className="w-full bg-gray-700 h-1.5 rounded-full mt-2 relative">
           <motion.div
             className="h-full bg-green-400 rounded-full"
-            style={{ width: `${(elapsedMs / data.durationMs) * 100}%` }}
+            style={{ width: `${(elapsedMs / (data.durationMs || 1)) * 100}%` }}
             initial={{ width: 0 }}
-            animate={{ width: `${(elapsedMs / data.durationMs) * 100}%` }}
+            animate={{ width: `${(elapsedMs / (data.durationMs || 1)) * 100}%` }}
             transition={{ duration: 1, ease: "easeOut" }}
           ></motion.div>
         </div>
 
         {!isMobile && (
           <p className="text-xs text-gray-400 mt-1">
-            ⏳ Elapsed: {formatTime(elapsedMs)} / {formatTime(data.durationMs)}
+            ⏳ Elapsed: {formatTime(elapsedMs)} / {formatTime(data.durationMs || 0)}
           </p>
         )}
       </div>
