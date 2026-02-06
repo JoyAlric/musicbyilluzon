@@ -59,7 +59,7 @@ export const metadata = {
         </div>
   
         <footer>
-          Copyright © 2025 <a href="#">Music by Illuzon</a> - All Rights Reserved.
+          Copyright © 2026 <a href="#">Music by Illuzon</a> - All Rights Reserved.
         </footer>
       </>
     );
