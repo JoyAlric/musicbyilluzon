@@ -6,6 +6,7 @@ export const metadata = {
   };
   
   export default function LegalPage() {
+    const currentYear = new Date().getFullYear();
     return (
       <>
         <div className="container">
@@ -62,7 +63,7 @@ export const metadata = {
         </div>
   
         <footer>
-          Copyright © 2026 <a href="#">Music by Illuzon</a> - All Rights Reserved.
+          Copyright © {currentYear} <a href="#">Music by Illuzon</a> - All Rights Reserved.
         </footer>
       </>
     );
